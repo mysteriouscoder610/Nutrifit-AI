@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}Create account · {{ APP_NAME }}{% endblock %}
+
+{% block body %}
+<div class="auth-shell">
+  <div class="auth-card" style="max-width: 520px;">
+    <div class="brand">
+      <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="NutriFit" />
+      <div>
+        <h1>Create your account</h1>
+        <div class="subtitle">Choose a role and get started in seconds.</div>
+      </div>
+    </div>
+
+    <div class="role-toggle" id="role-toggle">
+      <button type="button" data-role="user" class="active">I'm a User</button>
+      <button type="button" data-role="dietician">I'm a Dietician</button>
+    </div>
+
+    <form id="register-form" novalidate>
+      <div class="grid grid-2">
+        <div class="form-group">
+          <label for="reg-name">Full name</label>
+          <input id="reg-name" name="name" class="input" required />
+          <div class="error-text" data-error-for="reg-name"></div>
+        </div>
+        <div class="form-group">
+          <label for="reg-username">Username</label>
+          <input id="reg-username" name="username" class="input" required autocomplete="username" />
+          <div class="error-text" data-error-for="reg-username"></div>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="form-group">
+          <label for="reg-email">Email</label>
+          <input id="reg-email" name="email" type="email" class="input" required autocomplete="email" />
+          <div class="error-text" data-error-for="reg-email"></div>
+        </div>
+        <div class="form-group">
+          <label for="reg-mobile">Mobile (10 digits)</label>
+          <input id="reg-mobile" name="mobile_number" inputmode="numeric" maxlength="10" class="input" required />
+          <div class="error-text" data-error-for="reg-mobile"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-password">Password</label>
+        <input id="reg-password" name="password" type="password" class="input" required autocomplete="new-password" />
+        <ul class="password-rules" id="password-rules">
+          <li data-rule="length">At least 8 characters</li>
+          <li data-rule="upper">Has an uppercase letter</li>
+          <li data-rule="lower">Has a lowercase letter</li>
+          <li data-rule="digit">Has a number</li>
+          <li data-rule="special">Has a special character</li>
+        </ul>
+        <div class="error-text" data-error-for="reg-password"></div>
+      </div>
+
+      <div id="dietician-fields" class="hidden">
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="reg-speciality">Speciality</label>
+            <input id="reg-speciality" name="speciality" class="input" placeholder="e.g. Sports Nutrition" />
+            <div class="error-text" data-error-for="reg-speciality"></div>
+          </div>
+          <div class="form-group">
+            <label for="reg-location">Location</label>
+            <input id="reg-location" name="location" class="input" placeholder="e.g. Bengaluru, IN" />
+            <div class="error-text" data-error-for="reg-location"></div>
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="reg-rate-1">Per hour charge (₹)</label>
+            <input id="reg-rate-1" name="per_hour_charge" type="number" min="0" class="input" placeholder="1500" />
+          </div>
+          <div class="form-group">
+            <label for="reg-rate-2">Per 2-hour charge (₹)</label>
+            <input id="reg-rate-2" name="per_two_hour_charge" type="number" min="0" class="input" placeholder="2700" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="reg-bio">Short bio</label>
+          <textarea id="reg-bio" name="bio" placeholder="Tell users about your experience, approach, and clientele."></textarea>
+        </div>
+      </div>
+
+      <button class="btn" id="register-submit" style="width: 100%">
+        <i class="fa-solid fa-user-plus"></i> Create account
+      </button>
+
+      <p class="muted" style="text-align:center; margin-top: 18px; font-size: 13.5px;">
+        Already have an account? <a href="{{ url_for('login') }}">Sign in</a>
+      </p>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>NutriFit.initRegister();</script>
+{% endblock %}

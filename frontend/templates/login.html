@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Sign in · {{ APP_NAME }}{% endblock %}
+
+{% block body %}
+<div class="auth-shell">
+  <div class="auth-card">
+    <div class="brand">
+      <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="NutriFit" />
+      <div>
+        <h1>Welcome back</h1>
+        <div class="subtitle">Sign in to continue your nutrition journey.</div>
+      </div>
+    </div>
+
+    <form id="login-form" novalidate>
+      <div class="form-group">
+        <label for="login-id">Email or username</label>
+        <input id="login-id" name="username_or_email" class="input" autocomplete="username" required />
+        <div class="error-text" data-error-for="login-id"></div>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input id="login-password" type="password" name="password" class="input" autocomplete="current-password" required />
+        <div class="error-text" data-error-for="login-password"></div>
+      </div>
+      <button class="btn" id="login-submit" style="width: 100%">
+        <i class="fa-solid fa-right-to-bracket"></i> Sign in
+      </button>
+      <p class="muted" style="text-align:center; margin-top: 18px; font-size: 13.5px;">
+        New here? <a href="{{ url_for('register') }}">Create an account</a>
+      </p>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>NutriFit.initLogin();</script>
+{% endblock %}

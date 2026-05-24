@@ -1,0 +1,53 @@
+{# Reusable authenticated app shell with sidebar #}
+{% extends "base.html" %}
+
+{% block body %}
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="NutriFit" />
+      <div>
+        <div class="title">NutriFit</div>
+        <div class="subtitle">AI Health Companion</div>
+      </div>
+    </div>
+
+    <a class="nav-link {% if active=='dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}">
+      <i class="fa-solid fa-house"></i><span>Dashboard</span>
+    </a>
+    <a class="nav-link {% if active=='meal' %}active{% endif %}" href="{{ url_for('meal_scan') }}">
+      <i class="fa-solid fa-camera"></i><span>Meal Scan</span>
+    </a>
+    <a class="nav-link {% if active=='rag' %}active{% endif %}" href="{{ url_for('rag_chat') }}">
+      <i class="fa-solid fa-comments"></i><span>AI Chat</span>
+    </a>
+    <a class="nav-link {% if active=='dieticians' %}active{% endif %}" href="{{ url_for('dieticians') }}">
+      <i class="fa-solid fa-user-doctor"></i><span>Dieticians</span>
+    </a>
+    <a class="nav-link {% if active=='consultations' %}active{% endif %}" href="{{ url_for('consultations') }}">
+      <i class="fa-solid fa-headset"></i><span>Consultations</span>
+    </a>
+    <a class="nav-link {% if active=='activity' %}active{% endif %}" href="{{ url_for('activity') }}">
+      <i class="fa-solid fa-dumbbell"></i><span>Activity Log</span>
+    </a>
+
+    <div class="sidebar-footer">
+      <a href="#" id="logout-link" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h1>{% block heading %}{% endblock %}</h1>
+      <div class="user-chip" id="user-chip">
+        <div class="avatar" id="user-avatar">·</div>
+        <div>
+          <div id="user-name" style="font-weight:600;font-size:13px">…</div>
+          <div id="user-role" class="muted" style="font-size:11px">…</div>
+        </div>
+      </div>
+    </div>
+    {% block main %}{% endblock %}
+  </main>
+</div>
+{% endblock %}

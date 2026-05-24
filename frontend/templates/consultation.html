@@ -1,0 +1,26 @@
+{% extends "_app_shell.html" %}
+{% set active = 'consultations' %}
+{% block title %}Consultations · {{ APP_NAME }}{% endblock %}
+{% block heading %}My Consultations{% endblock %}
+
+{% block main %}
+<div class="card">
+  <div class="row-flex" style="justify-content: space-between;">
+    <div>
+      <h3 style="margin:0">All bookings &amp; transcripts</h3>
+      <div class="muted">Upload your call recording — AI transcribes it and writes a clean summary you can question later.</div>
+    </div>
+    <button class="btn ghost small" id="refresh-consultations"><i class="fa-solid fa-rotate"></i> Refresh</button>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<div id="consultations-list" class="grid">
+  <div class="empty">Loading consultations…</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>NutriFit.initConsultations();</script>
+{% endblock %}

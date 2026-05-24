@@ -1,0 +1,75 @@
+{% extends "_app_shell.html" %}
+{% set active = 'activity' %}
+{% block title %}Activity · {{ APP_NAME }}{% endblock %}
+{% block heading %}Activity Log{% endblock %}
+
+{% block main %}
+<div class="grid grid-2">
+  <div class="card">
+    <h3><i class="fa-solid fa-plus" style="color:var(--accent)"></i> Log an Activity</h3>
+    <form id="activity-form">
+      <div class="form-group">
+        <label for="act-type">Type</label>
+        <select id="act-type" class="input">
+          <option value="exercise">Exercise</option>
+          <option value="walk">Walk</option>
+          <option value="food_intake">Food intake</option>
+          <option value="custom">Custom</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="act-desc">Description</label>
+        <input id="act-desc" class="input" placeholder="e.g. 30 min strength training" required />
+      </div>
+      <div class="grid grid-2">
+        <div class="form-group">
+          <label for="act-value">Value</label>
+          <input id="act-value" class="input" placeholder="30" />
+        </div>
+        <div class="form-group">
+          <label for="act-unit">Unit</label>
+          <input id="act-unit" class="input" placeholder="minutes / km / g / cup" />
+        </div>
+      </div>
+      <button class="btn" type="submit"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3><i class="fa-solid fa-comments" style="color:var(--accent-3)"></i> Ask AI about your logs</h3>
+    <div class="form-group">
+      <label for="ask-window">Time window</label>
+      <select id="ask-window" class="input">
+        <option value="7">Last 7 days</option>
+        <option value="14">Last 14 days</option>
+        <option value="30" selected>Last 30 days</option>
+        <option value="90">Last 90 days</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="ask-q">Your question</label>
+      <textarea id="ask-q" placeholder="e.g. Based on my weekly logs, suggest a workout for today."></textarea>
+    </div>
+    <button class="btn" id="ask-btn"><i class="fa-solid fa-paper-plane"></i> Ask</button>
+    <div id="ask-answer" class="muted" style="margin-top: 14px; white-space: pre-wrap; line-height: 1.6;"></div>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="card">
+  <h3><i class="fa-solid fa-clock-rotate-left"></i> Activity History</h3>
+  <div style="overflow-x:auto;">
+    <table class="table" id="activity-table">
+      <thead>
+        <tr><th>When</th><th>Type</th><th>Description</th><th>Value</th><th>Unit</th><th>Source</th></tr>
+      </thead>
+      <tbody><tr><td colspan="6" class="muted" style="text-align:center;">Loading…</td></tr></tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>NutriFit.initActivity();</script>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}NutriFit AI — Your Meal, Health & Dietitian Guide{% endblock %}
+
+{% block body %}
+<div class="public-shell">
+  <nav class="public-nav">
+    <a class="brand" href="{{ url_for('landing') }}">
+      <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="NutriFit" />
+      <strong>NutriFit AI</strong>
+    </a>
+    <div class="links">
+      <a href="#features" class="btn outline small">Features</a>
+      <a href="{{ url_for('login') }}" class="btn ghost small">Sign In</a>
+      <a href="{{ url_for('register') }}" class="btn small">Get Started</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <span class="pill"><i class="fa-solid fa-bolt" style="color: var(--accent)"></i> AI-powered nutrition · disease-aware · real human dieticians</span>
+    <h1>Your Meal, Health &amp; Dietitian Guide.</h1>
+    <p class="lead">
+      Snap a meal, get instant nutrient breakdowns. Chat with a RAG-powered AI on diet plans and disease nutrition. Book a verified local dietician — and let AI summarize the call. Log activity manually or via MCP, and wake up to a personalized daily plan.
+    </p>
+    <div class="cta">
+      <a href="{{ url_for('register') }}" class="btn"><i class="fa-solid fa-rocket"></i> Start free</a>
+      <a href="{{ url_for('login') }}" class="btn outline">I have an account</a>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <h2>Everything you need to eat smarter.</h2>
+    <div class="grid grid-3">
+      <div class="feature">
+        <div class="icon"><i class="fa-solid fa-camera"></i></div>
+        <h3>Meal Image Analysis</h3>
+        <p>Upload any plate. Gemini Vision identifies foods, estimates portions, and computes macros &amp; micros — with a 0-10 health score and 3 wins / 3 cautions.</p>
+      </div>
+      <div class="feature">
+        <div class="icon"><i class="fa-solid fa-brain"></i></div>
+        <h3>RAG Disease &amp; Diet Chat</h3>
+        <p>LangChain + FAISS over a curated knowledge base — diabetes, PCOS, hypertension, kidney disease and more. Attach a photo of a condition for image-aware answers.</p>
+      </div>
+      <div class="feature">
+        <div class="icon"><i class="fa-solid fa-user-doctor"></i></div>
+        <h3>Local Dieticians</h3>
+        <p>Browse verified dieticians by specialty and pricing. Book a call, upload the recording, and let AI deliver a structured summary you can question later.</p>
+      </div>
+      <div class="feature">
+        <div class="icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <h3>MCP Activity Logging</h3>
+        <p>Log workouts, walks, meals, and custom routines from your AI assistant via MCP — or log manually from the dashboard. Your data, structured and searchable.</p>
+      </div>
+      <div class="feature">
+        <div class="icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h3>Daily AI Suggestions</h3>
+        <p>Every morning, NutriFit reviews your last 7-30 days of logs and crafts a personalized diet plan, workout plan, and key insights — fueled by Gemini.</p>
+      </div>
+      <div class="feature">
+        <div class="icon"><i class="fa-solid fa-shield"></i></div>
+        <h3>Private &amp; Secure</h3>
+        <p>JWT auth with strong password policy. Your data is yours — local PostgreSQL, your own Gemini key, your own MCP. No external pipelines.</p>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

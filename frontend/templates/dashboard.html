@@ -1,0 +1,88 @@
+{% extends "_app_shell.html" %}
+{% set active = 'dashboard' %}
+{% block title %}Dashboard · {{ APP_NAME }}{% endblock %}
+{% block heading %}Dashboard{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block main %}
+<div id="welcome" style="margin-bottom:18px;">
+  <div class="card" style="display:flex; align-items:center; gap:16px;">
+    <div class="score-pill" style="min-width:120px;">
+      <div class="num"><i class="fa-solid fa-leaf" style="color:var(--accent)"></i></div>
+      <div class="lbl">Today</div>
+    </div>
+    <div>
+      <h2 style="margin:0">Welcome back, <span id="welcome-name">…</span></h2>
+      <div class="muted">Here's your AI-tailored plan for today, based on your last 7 days of activity and meals.</div>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-2">
+  <div class="card">
+    <h3><i class="fa-solid fa-utensils" style="color:var(--accent)"></i> Today's Diet Plan</h3>
+    <div id="diet-suggestion" class="muted" style="white-space:pre-wrap; font-size: 14.5px; line-height: 1.6;">
+      <span class="loader loader-inline"></span> generating…
+    </div>
+  </div>
+  <div class="card">
+    <h3><i class="fa-solid fa-dumbbell" style="color:var(--accent-2)"></i> Today's Workout</h3>
+    <div id="workout-suggestion" class="muted" style="white-space:pre-wrap; font-size: 14.5px; line-height: 1.6;">
+      <span class="loader loader-inline"></span> generating…
+    </div>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="grid grid-2">
+  <div class="card">
+    <h3><i class="fa-solid fa-lightbulb" style="color:var(--warning)"></i> Insights</h3>
+    <ul id="insights-list" class="muted" style="padding-left: 18px; line-height: 1.7;">
+      <li>generating…</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><i class="fa-solid fa-chart-line" style="color:var(--accent-3)"></i> Weekly Nutrition</h3>
+    <canvas id="nutrition-chart" height="160"></canvas>
+    <div class="row-flex" style="margin-top: 14px; gap: 18px; font-size: 13px;">
+      <div><strong id="wk-cal">0</strong> kcal · <span class="muted">7d</span></div>
+      <div><strong id="wk-prot">0</strong> g protein</div>
+      <div><strong id="wk-carb">0</strong> g carbs</div>
+      <div><strong id="wk-fat">0</strong> g fat</div>
+    </div>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="grid grid-2">
+  <div class="card">
+    <h3><i class="fa-solid fa-bowl-food" style="color:var(--accent)"></i> Recent Meals</h3>
+    <div id="recent-meals"><div class="empty">No meals logged yet.</div></div>
+  </div>
+  <div class="card">
+    <h3><i class="fa-solid fa-person-running" style="color:var(--accent-2)"></i> Recent Activity</h3>
+    <div id="recent-activities"><div class="empty">No activities logged yet.</div></div>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="card">
+  <h3>Quick Actions</h3>
+  <div class="row-flex" style="margin-top: 6px;">
+    <a class="btn" href="{{ url_for('meal_scan') }}"><i class="fa-solid fa-camera"></i> Scan a Meal</a>
+    <a class="btn outline" href="{{ url_for('activity') }}"><i class="fa-solid fa-plus"></i> Log Activity</a>
+    <a class="btn outline" href="{{ url_for('rag_chat') }}"><i class="fa-solid fa-comments"></i> Chat with AI</a>
+    <a class="btn outline" href="{{ url_for('dieticians') }}"><i class="fa-solid fa-user-doctor"></i> Find Dietician</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>NutriFit.initDashboard();</script>
+{% endblock %}

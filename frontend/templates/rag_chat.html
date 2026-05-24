@@ -1,0 +1,29 @@
+{% extends "_app_shell.html" %}
+{% set active = 'rag' %}
+{% block title %}AI Chat · {{ APP_NAME }}{% endblock %}
+{% block heading %}AI Chat — Diet &amp; Disease{% endblock %}
+
+{% block main %}
+<div class="chat-shell">
+  <div class="chat-window" id="chat-window">
+    <div class="message">
+      <div class="bubble">
+        Hi! I'm <strong>NutriFit AI</strong>. Ask me about diet plans, healthy recipes, or how to eat for conditions like diabetes, PCOS, hypertension, kidney disease and more. You can also attach a photo of a condition or food label and I'll figure it out.
+      </div>
+    </div>
+  </div>
+  <div class="chat-input-row">
+    <button class="attach-btn" id="attach-btn" title="Attach image">
+      <i class="fa-solid fa-paperclip"></i>
+    </button>
+    <input type="file" id="chat-file" accept="image/*" style="display:none" />
+    <textarea id="chat-input" placeholder="Ask anything — e.g., What should I eat with PCOS?"></textarea>
+    <button class="btn" id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+  <div class="muted" id="attached-name" style="font-size:12px; margin-top:6px;"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>NutriFit.initRagChat();</script>
+{% endblock %}

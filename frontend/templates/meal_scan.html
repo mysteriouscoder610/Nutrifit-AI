@@ -1,0 +1,71 @@
+{% extends "_app_shell.html" %}
+{% set active = 'meal' %}
+{% block title %}Meal Scan · {{ APP_NAME }}{% endblock %}
+{% block heading %}Meal Scan{% endblock %}
+
+{% block main %}
+<div class="grid grid-2">
+  <div>
+    <div class="dropzone" id="dropzone">
+      <input type="file" id="meal-file" accept="image/*" style="display:none" />
+      <div class="icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+      <h3>Drop a meal photo here</h3>
+      <p>or click to choose · JPG, PNG, WEBP (≤ 25MB)</p>
+      <img id="preview" class="preview-img hidden" alt="preview" />
+    </div>
+    <div class="row-flex" style="margin-top: 14px;">
+      <button class="btn" id="analyze-btn" disabled><i class="fa-solid fa-wand-magic-sparkles"></i> Analyze with AI</button>
+      <button class="btn ghost" id="reset-btn"><i class="fa-solid fa-rotate"></i> Reset</button>
+    </div>
+  </div>
+
+  <div>
+    <div class="card" id="result-card" style="min-height: 260px;">
+      <h3>AI Analysis</h3>
+      <div id="result-empty" class="empty">Upload a meal photo and tap Analyze.</div>
+      <div id="result-loading" class="hidden" style="text-align:center; padding: 28px 12px;">
+        <div class="loader"></div>
+        <div class="muted" style="margin-top: 12px;">Examining your plate, estimating portions and nutrients…</div>
+      </div>
+      <div id="result" class="hidden">
+        <div class="row-flex" style="justify-content: space-between; margin-bottom: 14px;">
+          <div>
+            <div class="muted" style="font-size: 12px;">Detected</div>
+            <div id="r-food" style="font-weight:600; font-size:16px;"></div>
+          </div>
+          <div class="score-pill"><div class="num" id="r-score">0</div><div class="lbl">Health Score</div></div>
+        </div>
+        <h3 style="margin-top:6px">Macronutrients</h3>
+        <div id="r-macros"></div>
+        <h3 style="margin-top:14px">Micronutrients</h3>
+        <div id="r-micros"></div>
+        <div class="grid grid-2" style="margin-top: 14px;">
+          <div>
+            <h3>What's good</h3>
+            <div id="r-good"></div>
+          </div>
+          <div>
+            <h3>Things to watch</h3>
+            <div id="r-bad"></div>
+          </div>
+        </div>
+        <div class="muted" id="r-summary" style="font-size:13px; margin-top:8px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="card">
+  <div class="row-flex" style="justify-content:space-between;">
+    <h3><i class="fa-solid fa-clock-rotate-left"></i> Meal History</h3>
+    <button class="btn ghost small" id="refresh-history"><i class="fa-solid fa-rotate"></i> Refresh</button>
+  </div>
+  <div id="history"><div class="empty">No meals logged yet.</div></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>NutriFit.initMealScan();</script>
+{% endblock %}

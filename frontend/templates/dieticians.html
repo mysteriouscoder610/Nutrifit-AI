@@ -1,0 +1,23 @@
+{% extends "_app_shell.html" %}
+{% set active = 'dieticians' %}
+{% block title %}Dieticians · {{ APP_NAME }}{% endblock %}
+{% block heading %}Find a Dietician{% endblock %}
+
+{% block main %}
+<div class="card" style="margin-bottom: 18px;">
+  <div class="row-flex" style="justify-content: space-between;">
+    <div>
+      <h3 style="margin:0">Verified local nutrition experts</h3>
+      <div class="muted">Browse profiles, compare charges and book a consultation in one click.</div>
+    </div>
+    <button class="btn ghost small" id="refresh-dieticians"><i class="fa-solid fa-rotate"></i> Refresh</button>
+  </div>
+</div>
+<div id="dieticians-grid" class="grid grid-3">
+  <div class="empty" style="grid-column: 1 / -1;">Loading dieticians…</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>NutriFit.initDieticians();</script>
+{% endblock %}
